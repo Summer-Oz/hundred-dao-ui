@@ -14,24 +14,25 @@ import { NetworkConnector } from "@web3-react/network-connector";
 const POLLING_INTERVAL = 12000;
 const RPC_URLS = {
   // 1: process.env.NEXT_PUBLIC_PROVIDER,
-  1: "https://mainnet.infura.io/v3/2b150eabf65140efb3d5508a888ee93e"
+  1: "https://mainnet.infura.io/v3/2b150eabf65140efb3d5508a888ee93e",
+  4689: "https://babel-api.mainnet.iotex.io"
 };
 
 export const network = new NetworkConnector({ urls: { 1: RPC_URLS[1] } });
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42]
+  supportedChainIds: [1, 3, 4, 5, 42, 4689]
 });
 
 export const walletconnect = new WalletConnectConnector({
-  rpc: { 1: RPC_URLS[1] },
+  rpc: { 4689: RPC_URLS[4689] },
   bridge: "https://bridge.walletconnect.org",
   qrcode: true,
   pollingInterval: POLLING_INTERVAL
 });
 
 export const walletlink = new WalletLinkConnector({
-  url: RPC_URLS[1],
+  url: RPC_URLS[4689],
   appName: "veToken"
 });
 

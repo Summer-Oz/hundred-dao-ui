@@ -49,34 +49,15 @@ class Store {
       configured: false,
       projects: [
         {
-          type: 'hundredfinance',
-          id: 'hundred-finance-kovan',
-          name: 'Ethereum Kovan',
-          logo: '/unknown-logo.png',
-          url: '',
-          chainId: 42,
-          gaugeProxyAddress: "0xFa0F5d0cA1031aC6A47CA8Db9cf9dcfd45B3659a",
-          lpPriceOracle: "0x10010069DE6bD5408A6dEd075Cf6ae2498073c73",
-          rewardPolicyMaker: "0x0d9459A2d7252c4cd62cF13416Cd319c3e0C5bB4",
-          gauges: [],
-          vaults: [],
-          tokenMetadata: {},
-          veTokenMetadata: {},
-          otherTokenMetadata: {},
-          useDays: false,
-          maxDurationYears: 4,
-          onload: null
-        },
-        {
-          type: 'hundredfinance',
-          id: 'hundred-finance-arbitrum',
-          name: 'Arbitrum',
+          type: 'minmaxfinance',
+          id: 'minmax-finance-iotex',
+          name: 'Iotex',
           logo: '/arbitrum.png',
           url: '',
-          chainId: 42161,
-          gaugeProxyAddress: "0xb4BAfc3d60662De362c0cB0f5e2DE76603Ea77D7",
-          lpPriceOracle: "0x10010069DE6bD5408A6dEd075Cf6ae2498073c73",
-          rewardPolicyMaker: "0x3A4148DDDd121fbceD8717CB7B82370Be27F76bf",
+          chainId: 4689,
+          gaugeProxyAddress: "0xb39dF3318D42b36D1E1D65DD091A6490745a13aD",
+          lpPriceOracle: "",
+          rewardPolicyMaker: "0xf7414fe50b7CC4dB96592a1460EE3BA258343B8A",
           gauges: [],
           vaults: [],
           tokenMetadata: {},
@@ -86,44 +67,7 @@ class Store {
           maxDurationYears: 4,
           onload: null
         },
-        {
-          type: 'hundredfinance',
-          id: 'hundred-finance-fantom',
-          name: 'Fantom',
-          logo: '/fantom.png',
-          url: '',
-          chainId: 250,
-          gaugeProxyAddress: "0xb1c4426C86082D91a6c097fC588E5D5d8dD1f5a8",
-          lpPriceOracle: "0x10010069DE6bD5408A6dEd075Cf6ae2498073c73",
-          rewardPolicyMaker: "0x772918d032cFd4Ff09Ea7Af623e56E2D8D96bB65",
-          gauges: [],
-          vaults: [],
-          tokenMetadata: {},
-          veTokenMetadata: {},
-          otherTokenMetadata: {},
-          useDays: false,
-          maxDurationYears: 4,
-          onload: null
-        },
-        {
-          type: 'hundredfinance',
-          id: 'hundred-finance-harmony',
-          name: 'Harmony One',
-          logo: '/harmony.png',
-          url: '',
-          chainId: 1666600000,
-          gaugeProxyAddress: "0xa8cD5D59827514BCF343EC19F531ce1788Ea48f8",
-          lpPriceOracle: "0x10010069de6bd5408a6ded075cf6ae2498073c73",
-          rewardPolicyMaker: "0xEdBA32185BAF7fEf9A26ca567bC4A6cbe426e499",
-          gauges: [],
-          vaults: [],
-          tokenMetadata: {},
-          veTokenMetadata: {},
-          otherTokenMetadata: {},
-          useDays: false,
-          maxDurationYears: 4,
-          onload: null
-        }
+        
       ],
     };
 
@@ -214,7 +158,7 @@ class Store {
     const hndPrice = await this._getHndPrice();
 
     const gaugeControllerContract = new web3.eth.Contract(GAUGE_CONTROLLER_ABI, project.gaugeProxyAddress);
-    const priceOracleContract = new web3.eth.Contract(PRICE_ORACLE_ABI, project.lpPriceOracle);
+    //const priceOracleContract = new web3.eth.Contract(PRICE_ORACLE_ABI, project.lpPriceOracle);
 
     // get how many gauges there are
     const n_gauges = await gaugeControllerContract.methods.n_gauges().call();
@@ -265,30 +209,31 @@ class Store {
 
     const gaugesLPTokens = await Promise.all(gaugesLPTokensPromise);
 
-    const lpTokenUnderlyingInfo = await Promise.all(
-      gaugesLPTokens.map(lp => {
-        let pricePromise = new Promise((resolve, reject) => {
-          resolve(priceOracleContract.methods.getUnderlyingPrice(lp).call());
-        })
-        let exchangeRate = new Promise((resolve, reject) => {
-          resolve(new web3.eth.Contract(CTOKEN_ABI, lp).methods.exchangeRateStored().call());
-        })
+    // const lpTokenUnderlyingInfo = await Promise.all(
+    //   gaugesLPTokens.map(lp => {
+    //     let pricePromise = new Promise((resolve, reject) => {
+    //       //resolve(priceOracleContract.methods.getUnderlyingPrice(lp).call());
+    //       resolve(BigNumber(1))
+    //     })
+    //     let exchangeRate = new Promise((resolve, reject) => {
+    //       resolve(new web3.eth.Contract(CTOKEN_ABI, lp).methods.exchangeRateStored().call());
+    //     })
 
-        let underlying = new Promise((resolve, reject) => {
-          resolve(new web3.eth.Contract(CTOKEN_ABI, lp).methods.underlying().call());
-        })
+    //     let underlying = new Promise((resolve, reject) => {
+    //       resolve(new web3.eth.Contract(CTOKEN_ABI, lp).methods.underlying().call());
+    //     })
 
-        return [
-          pricePromise, exchangeRate, underlying
-        ];
-      }).flat()
-    )
+    //     return [
+    //       pricePromise, exchangeRate, underlying
+    //     ];
+    //   }).flat()
+    // )
 
     // get LP token info
     const lpTokensPromise = gaugesLPTokens
       .map((lpToken, index) => {
         const lpTokenContract = new web3.eth.Contract(ERC20_ABI, lpToken);
-        const lpUnderlyingTokenContract = new web3.eth.Contract(ERC20_ABI, lpTokenUnderlyingInfo[index * 3 + 2]);
+        //const lpUnderlyingTokenContract = new web3.eth.Contract(ERC20_ABI, lpTokenUnderlyingInfo[index * 3 + 2]);
 
         const promises = [];
         const namePromise = new Promise((resolve, reject) => {
@@ -303,15 +248,15 @@ class Store {
         const totalStakePromise = new Promise((resolve, reject) => {
           resolve(lpTokenContract.methods.balanceOf(gauges[index]).call());
         });
-        const underlyingDecimalsPromise = new Promise((resolve, reject) => {
-          resolve(lpUnderlyingTokenContract.methods.decimals().call());
-        });
+        // const underlyingDecimalsPromise = new Promise((resolve, reject) => {
+        //   resolve(lpUnderlyingTokenContract.methods.decimals().call());
+        // });
 
         promises.push(namePromise);
         promises.push(symbolPromise);
         promises.push(decimalsPromise);
         promises.push(totalStakePromise);
-        promises.push(underlyingDecimalsPromise);
+        promises.push(decimalsPromise);
 
         return promises;
       })
@@ -321,8 +266,10 @@ class Store {
 
     let projectGauges = [];
     for (let i = 0; i < gauges.length; i++) {
-      let lpPrice = BigNumber(lpTokenUnderlyingInfo[i * 3]).div(10 ** (36-lpTokens[i * 5 + 4])).toNumber();
-      let convRate = BigNumber(lpTokenUnderlyingInfo[i * 3 + 1]).div(10 ** 18).toNumber();
+      // let lpPrice = BigNumber(lpTokenUnderlyingInfo[i * 3]).div(10 ** (36-lpTokens[i * 5 + 4])).toNumber();
+      // let convRate = BigNumber(lpTokenUnderlyingInfo[i * 3 + 1]).div(10 ** 18).toNumber();
+       let lpPrice = BigNumber(1).toNumber();
+      let convRate = BigNumber(1).toNumber();
       const gauge = {
         address: gauges[i],
         weight: BigNumber(gaugesWeights[i]).div(1e18).toNumber(),
