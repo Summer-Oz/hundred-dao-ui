@@ -313,7 +313,7 @@ export default function EnhancedTable({ project }) {
         </Typography>
     }
 
-    return <Tooltip title={`You need ${formatCurrency(gauge.needVeHndForMaxBoost)} more veHND to get max boost`} followCursor>
+    return <Tooltip title={`You need ${formatCurrency(gauge.needVeHndForMaxBoost)} more veMAX to get max boost`} followCursor>
       <Typography variant="h5" className={classes.textSpacedClickable}>
         {formatCurrency(gauge.appliedBoost)}x
       </Typography>
@@ -371,7 +371,7 @@ export default function EnhancedTable({ project }) {
                   </TableCell>
                   <TableCell className={classes.cell} align="right">
                     <Typography variant="h5" className={classes.textSpaced}>
-                        {formatCurrency(row.gaugeApr)}% -> {formatCurrency(row.nextEpochGaugeApr)}%
+                        {formatCurrency(row.gaugeApr)}% {'->'} {formatCurrency(row.nextEpochGaugeApr)}%
                     </Typography>
                   </TableCell>
                   <TableCell className={classes.cell} align="right">
@@ -385,7 +385,7 @@ export default function EnhancedTable({ project }) {
                   </TableCell>
                   <TableCell className={classes.cell} align="right">
                     <Typography variant="h5" className={classes.textSpaced}>
-                      {formatCurrency(row.apr)}% -> {formatCurrency(row.nextEpochApr)}%
+                      {formatCurrency(row.apr)}% {'->'} {formatCurrency(row.nextEpochApr)}%
                     </Typography>
                   </TableCell>
                 </TableRow>

@@ -208,10 +208,10 @@ export default function BoostCalculator({ project }) {
         <div className={classes.boost}>
           <div>
             <Typography >
-              Estimated veHND: { formatCurrency(veTokenForLock(lockAmount, selectedDate)) }
+              Estimated veMAX: { formatCurrency(veTokenForLock(lockAmount, selectedDate)) }
             </Typography>
             <Typography >
-              Total veHND: { formatCurrency(+project?.veTokenMetadata.totalSupply) }
+              Total veMAX: { formatCurrency(+project?.veTokenMetadata.totalSupply) }
             </Typography>
             { gauge ?
               <Typography>

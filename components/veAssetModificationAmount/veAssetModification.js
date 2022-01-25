@@ -145,7 +145,7 @@ export default function VeAssetGeneration({ project }) {
       { amount ?
           <div className={classes.calculationResults}>
             <div className={classes.calculationResult}>
-              <Typography variant="h3">You will receive: {projectedVeHndBalance(project, amount).toFixed(2)} veHND</Typography>
+              <Typography variant="h3">You will receive: {projectedVeHndBalance(project, amount).toFixed(2)} veMAX</Typography>
             </div>
           </div>
         :

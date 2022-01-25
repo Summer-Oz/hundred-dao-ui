@@ -155,7 +155,7 @@ class Store {
       return;
     }
 
-    const hndPrice = await this._getHndPrice();
+    const maxPrice = await this._getMaxPrice();
 
     const gaugeControllerContract = new web3.eth.Contract(GAUGE_CONTROLLER_ABI, project.gaugeProxyAddress);
     //const priceOracleContract = new web3.eth.Contract(PRICE_ORACLE_ABI, project.lpPriceOracle);
@@ -208,27 +208,7 @@ class Store {
     });
 
     const gaugesLPTokens = await Promise.all(gaugesLPTokensPromise);
-
-    // const lpTokenUnderlyingInfo = await Promise.all(
-    //   gaugesLPTokens.map(lp => {
-    //     let pricePromise = new Promise((resolve, reject) => {
-    //       //resolve(priceOracleContract.methods.getUnderlyingPrice(lp).call());
-    //       resolve(BigNumber(1))
-    //     })
-    //     let exchangeRate = new Promise((resolve, reject) => {
-    //       resolve(new web3.eth.Contract(CTOKEN_ABI, lp).methods.exchangeRateStored().call());
-    //     })
-
-    //     let underlying = new Promise((resolve, reject) => {
-    //       resolve(new web3.eth.Contract(CTOKEN_ABI, lp).methods.underlying().call());
-    //     })
-
-    //     return [
-    //       pricePromise, exchangeRate, underlying
-    //     ];
-    //   }).flat()
-    // )
-
+    
     // get LP token info
     const lpTokensPromise = gaugesLPTokens
       .map((lpToken, index) => {
@@ -318,7 +298,7 @@ class Store {
     project.tokenMetadata = projectTokenMetadata;
     project.veTokenMetadata = projectVeTokenMetadata;
     project.gauges = projectGauges;
-    project.hndPrice = hndPrice
+    project.maxPrice = maxPrice
 
     callback(null, project);
   }
@@ -501,11 +481,11 @@ class Store {
       let providedLiquidity = project.gauges[i].balance * project.gauges[i].lpToken.price;
       let totalProvidedLiquidity = project.gauges[i].totalStakeBalance * project.gauges[i].lpToken.price;
 
-      let totalRewards = currentRewardRate * 365 * 24 * 3600 * project.hndPrice / 1e18;
+      let totalRewards = currentRewardRate * 365 * 24 * 3600 * project.maxPrice / 1e18;
       let gaugeRewards = totalRewards * project.gauges[i].currentEpochRelativeWeight / 100
       let rewards = gaugeRewards * project.gauges[i].liquidityShare / 100
 
-      let nextEpochTotalRewards = nextEpochRewardRate * 365 * 24 * 3600 * project.hndPrice / 1e18;
+      let nextEpochTotalRewards = nextEpochRewardRate * 365 * 24 * 3600 * project.maxPrice / 1e18;
       let nextEpochGaugeRewards = nextEpochTotalRewards * project.gauges[i].nextEpochRelativeWeight / 100;
       let nextEpochRewards = nextEpochGaugeRewards * project.gauges[i].liquidityShare / 100
 
@@ -819,21 +799,15 @@ class Store {
       });
   };
 
-  _getHndPrice = async () => {
+  _getMaxPrice = async () => {
       try{
-      const url =  "https://api.coingecko.com/api/v3/simple/price?ids=hundred-finance&vs_currencies=usd"
-      const headers = {}
-      const response = await fetch(url,
-        {
-          method: "GET",
-          mode: 'cors',
-          headers: headers
-        }
-      )
-      const data = await response.json()
-      const hnd = data ? data["hundred-finance"] : null
-
-      return  hnd ? +hnd.usd : 0
+        const { library } = useActiveWeb3React();
+        if (!library) return 0;
+        const busdMaxLpContract = createContract(busdMaxLpAddress, LP_ABI, library);
+        const reserves = await busdMaxLpContract.getReserves();
+        const [busd, max] = reserves.map(el => etherToBn(el));
+        const busdPerMax = busd.div(max);
+        return busdPerMax;
     }
     catch(err){
       console.log(err)

@@ -127,7 +127,7 @@ export default function VeAssetGeneration({ project }) {
         <div className={classes.inputTitleContainer}>
           <div className={classes.inputTitle}>
             <Typography variant="h5" noWrap>
-              Relock for { isLockIncreasePossible(project, selectedDate) ? `(new veHND balance: ${projectedVeHndBalance(project).toFixed(2)})` : ''  }
+              Relock for { isLockIncreasePossible(project, selectedDate) ? `(new veMAX balance: ${projectedVeHndBalance(project).toFixed(2)})` : ''  }
             </Typography>
           </div>
         </div>
