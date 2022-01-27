@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
   font-size: 18px;
 }
@@ -24,4 +23,43 @@ a:hover {
 img {
   max-width: 100%;
   display: block;
+}
+
+.MuiOutlinedInput-input,
+.MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] .MuiAutocomplete-input:first-child {
+  padding: 14.5px 14px !important;
+}
+
+.MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
+  padding: 0 !important;
+}
+
+.MuiSvgIcon-root {
+  vertical-align: bottom !important;
+  width: 24px !important;
+  padding-left: 4px;
+}
+
+.background-wrapper {
+  min-height: 100vh;
+  background: #000 url(/bg.svg) no-repeat top;
+  background-size: contain;
+  max-width: 100vw;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.92;
+  margin: 0 auto;
+}
+
+.MuiPaper-rounded {
+  background-image: linear-gradient(#202231, #202231), linear-gradient(90deg, #07c, #609) !important;
+}
+
+.gradient-border {
+  border-style: solid;
+  border-width: 4px;
+  border-image: linear-gradient(45deg, hsl(205, 97%, 47%), hsl(280, 98%, 43%)) 1;
 }

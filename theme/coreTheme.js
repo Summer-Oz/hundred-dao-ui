@@ -115,7 +115,7 @@ const coreTheme = {
         }
       },
       sizeLarge: {
-        padding: "19px 24px",
+        padding: "12px 24px",
         minWidth: "150px"
       },
       textSizeLarge: {
@@ -184,7 +184,7 @@ const coreTheme = {
     },
     MuiTableCell: {
       head: {
-        padding: "36px 24px"
+        padding: "16px 24px"
       },
       body: {
         padding: "12px 24px",

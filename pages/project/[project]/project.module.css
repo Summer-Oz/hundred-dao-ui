@@ -13,7 +13,7 @@
 }
 
 .projectCardContainer {
-  padding: 0 36px;
+  padding: 0px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -35,13 +35,13 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 48px;
+  grid-gap: 24px;
   box-sizing: border-box;
 }
 
 .fakeGrid {
   width: 100%;
-  padding: 0 36px;
+  padding: 0px;
 }
 
 .accountButton {
@@ -65,7 +65,7 @@
     padding: 0 24px;
   }
   .projectCardContainer {
-    padding: 0 24px;
+    padding: 0px;
     grid-gap: 24px;
   }
 
@@ -85,11 +85,14 @@
     padding: 0 12px;
   }
   .projectCardContainer {
-    padding: 0 12px;
+    padding: 0px;
     grid-gap: 12px;
   }
 
   .fakeGrid {
     grid-gap: 12px;
+  }
+  .projectCardContainer2EqualColumns {
+    grid-template-columns: 1fr;
   }
 }

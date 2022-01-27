@@ -43,7 +43,7 @@ export default function ProjectCard({ project }) {
   }, []);
 
   return (
-    <Paper elevation={ 1 } className={classes.projectCardContainer} onClick={handleNavigate}>
+    <Paper elevation={ 1 } className={[classes.projectCardContainer, 'gradient-border'].join(' ')} onClick={handleNavigate}>
       <div className={classes.projectCardTitle}>
         <div className={classes.projectCardLogo}>
           <img src={project.logo ? project.logo : '/unknown-logo.png'} alt="" height={ 70 }/>

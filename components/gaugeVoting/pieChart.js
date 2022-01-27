@@ -62,8 +62,8 @@ export default class Example extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height={400}>
-        <PieChart width={400} height={400}>
+      <ResponsiveContainer width="100%" height={300}>
+        <PieChart width={400} height={300}>
           <Pie
             activeIndex={this.state.activeIndex}
             activeShape={renderActiveShape}

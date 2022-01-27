@@ -15,7 +15,7 @@ in `this.store.projects` array
           type: 'hundredfinance',
           id: 'hundred-finance-harmony',
           name: 'Harmony One',
-          logo: '/logo128.png',
+          logo: '/minmaxlogo128.png',
           url: '',
           chainId: <chain-id>,
           gaugeProxyAddress: <gauge-controller-address>,
@@ -36,4 +36,4 @@ A new project card should show up when loading the app
 
 ## Thanks
 
-This project is forked from [chimera-defi/vetoken-voting](https://github.com/chimera-defi/veToken-voting) 
+This project is forked from [chimera-defi/vetoken-voting](https://github.com/chimera-defi/veToken-voting)

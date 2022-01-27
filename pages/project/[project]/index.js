@@ -106,11 +106,8 @@ function Projects({ changeTheme }) {
   return (
     <Layout changeTheme={changeTheme} backClicked={backClicked}>
       <Header changeTheme={changeTheme} backClicked={backClicked} />
-
         <div className={classes.projectContainer}>
-
           <Balances project={project} />
-
           <div className={classes.projectCardContainer2EqualColumns}>
             <Paper elevation={1} className={classes.ChartContainer}>
               <Typography variant="h3">

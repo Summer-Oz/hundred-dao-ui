@@ -284,7 +284,7 @@ class Store {
       address: web3.utils.toChecksumAddress(tokenAddress),
       symbol: await tokenContract.methods.symbol().call(),
       decimals: parseInt(await tokenContract.methods.decimals().call()),
-      logo: `/logo128.png`,
+      logo: `/minmaxlogo128.png`,
     };
 
     const projectVeTokenMetadata = {

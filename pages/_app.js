@@ -59,8 +59,9 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <React.Fragment>
+      <div class="background-wrapper">
       <Head>
-        <title>Hundred Finance DAO</title>
+        <title>MinMax Finance DAO</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={themeConfig}>
@@ -68,7 +69,8 @@ export default function MyApp({ Component, pageProps }) {
         <CssBaseline />
         {validateConfigured() && <Component {...pageProps} changeTheme={changeTheme} />}
         {!validateConfigured() && <Configure {...pageProps} />}
-      </ThemeProvider>
+        </ThemeProvider>
+            </div>
     </React.Fragment>
   );
 }

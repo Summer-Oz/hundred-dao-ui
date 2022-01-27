@@ -80,6 +80,7 @@ function Header(props) {
   const [unlockOpen, setUnlockOpen] = useState(false);
 
   useEffect(() => {
+    props.changeTheme(true);
     const accountConfigure = () => {
       const accountStore = stores.accountStore.getStore('account');
       setAccount(accountStore);
@@ -127,14 +128,14 @@ function Header(props) {
           </Button>
         </div>
       )}{' '}
-      <div className={classes.themeSelectContainer}>
+      {/* <div className={classes.themeSelectContainer}>
         <StyledSwitch
           icon={<Brightness2Icon className={classes.switchIcon} />}
           checkedIcon={<WbSunnyOutlinedIcon className={classes.switchIcon} />}
           checked={darkMode}
           onChange={handleToggleChange}
         />
-      </div>
+      </div> */}
       <Button disableElevation className={classes.accountButton} variant="contained" color="secondary" onClick={onAddressClicked}>
         {account && account.address && <div className={`${classes.accountIcon} ${classes.metamask}`}></div>}
         <Typography variant="h5">{account && account.address ? formatAddress(account.address) : 'Connect Wallet'}</Typography>
