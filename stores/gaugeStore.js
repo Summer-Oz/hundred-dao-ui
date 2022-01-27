@@ -24,7 +24,7 @@ import {
   INCREASE_LOCK_DURATION_RETURNED, WITHDRAW, WITHDRAW_RETURNED, APPLY_BOOST, APPLY_BOOST_RETURNED,
 } from './constants';
 
-import { ERC20_ABI, GAUGE_CONTROLLER_ABI, GAUGE_ABI, VOTING_ESCROW_ABI } from './abis';
+import { ERC20_ABI, GAUGE_CONTROLLER_ABI, GAUGE_ABI, VOTING_ESCROW_ABI, LP_ABI } from './abis';
 
 import stores from './';
 import BigNumber from 'bignumber.js';
@@ -800,14 +800,17 @@ class Store {
   };
 
   _getMaxPrice = async () => {
-      try{
-        const { library } = useActiveWeb3React();
-        if (!library) return 0;
-        const busdMaxLpContract = createContract(busdMaxLpAddress, LP_ABI, library);
-        const reserves = await busdMaxLpContract.getReserves();
-        const [busd, max] = reserves.map(el => etherToBn(el));
-        const busdPerMax = busd.div(max);
-        return busdPerMax;
+    try {
+      const web3 = await stores.accountStore.getWeb3Provider();
+      if (!web3) {
+        return;
+      }
+      const busdMaxLpContract = new web3.eth.Contract(LP_ABI, "0x88137f2a610693e975b17d7cf940bf014cf0f325");
+      const reserves = await busdMaxLpContract.methods.getReserves().call();
+      const busd = BigNumber(reserves["_reserve0"])
+      const max = BigNumber(reserves["_reserve1"])
+      const busdPerMax = busd.div(max);
+      return busdPerMax;
     }
     catch(err){
       console.log(err)

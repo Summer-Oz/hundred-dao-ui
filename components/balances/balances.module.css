@@ -1,6 +1,6 @@
 .overviewContainer {
-  padding: 32px 48px;
-  margin: 36px;
+  padding: 0px 24px;
+  margin: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,12 +25,12 @@
 
 @media screen and (max-width: 1600px) {
   .overviewContainer {
-    margin: 24px 24px;
-    padding: 24px 24px;
+    margin: 0px;
+    padding: 0px 16px;
   }
   .separator {
-    margin-left: 24px;
-    margin-right: 24px;
+    margin-left: 16px;
+    margin-right: 16px;
   }
 }
 

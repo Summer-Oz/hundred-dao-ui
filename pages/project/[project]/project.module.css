@@ -3,7 +3,7 @@
   padding: 0 36px;
   display: grid;
   grid-template-columns: 100%;
-  grid-gap: 36px;
+  grid-gap: 24px;
 }
 
 .ChartContainer {
@@ -17,7 +17,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 48px;
+  grid-gap: 24px;
   box-sizing: border-box;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .projectCardContainer2EqualColumns {
-  padding: 0 36px;
+  padding: 0px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -61,7 +61,6 @@
 }
 
 @media screen and (max-width: 1600px) {
-
   .projectContainer {
     padding: 0 24px;
   }
@@ -82,7 +81,6 @@
 }
 
 @media screen and (max-width: 1000px) {
-
   .projectContainer {
     padding: 0 12px;
   }
