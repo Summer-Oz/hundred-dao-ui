@@ -143,7 +143,7 @@ export default function VeAssetGeneration({ project }) {
         </RadioGroup>
       </div>
       <div className={classes.textField}>
-        Current lock ends on <span style={{ color: '#26ff91' }}>{moment.unix(project?.veTokenMetadata?.userLockEnd).toString()}</span>
+        Current lock ends on <span style={{ color: '#187FCE' }}>{moment.unix(project?.veTokenMetadata?.userLockEnd).toString()}</span>
       </div>
       <div className={classes.actionButton}>
         <Button
@@ -157,7 +157,7 @@ export default function VeAssetGeneration({ project }) {
         </Button>
       </div>
       <div className={classes.textField}>
-        Currently locked HND <span style={{ color: '#26ff91' }}>{(+project?.veTokenMetadata?.userLocked).toFixed(2)}</span>
+        Currently locked MAX <span style={{ color: '#187FCE' }}>{(+project?.veTokenMetadata?.userLocked).toFixed(2)}</span>
       </div>
       <div className={classes.actionButton}>
         <Button
@@ -167,7 +167,7 @@ export default function VeAssetGeneration({ project }) {
           disabled={lockLoading || !isUnLockPossible(project)}
           className={classes.button}
         >
-          <Typography variant="h5">{lockLoading ? <CircularProgress size={15} /> : `Unlock HND`}</Typography>
+          <Typography variant="h5">{lockLoading ? <CircularProgress size={15} /> : `Unlock MAX`}</Typography>
         </Button>
       </div>
     </Paper>

@@ -70,7 +70,7 @@ export default function MyApp({ Component, pageProps }) {
         {validateConfigured() && <Component {...pageProps} changeTheme={changeTheme} />}
         {!validateConfigured() && <Configure {...pageProps} />}
         </ThemeProvider>
-            </div>
+      </div>
     </React.Fragment>
   );
 }

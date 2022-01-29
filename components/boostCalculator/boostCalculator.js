@@ -146,7 +146,7 @@ export default function BoostCalculator({ project }) {
           <div className={classes.inputTitleContainer}>
             <div className={classes.inputTitle}>
               <Typography variant="h5" noWrap>
-                locked HND amount
+                locked MAX amount
               </Typography>
             </div>
           </div>

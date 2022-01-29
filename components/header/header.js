@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from 'react';
-
 import { Typography, Switch, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { withTheme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
-
-import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
-import Brightness2Icon from '@material-ui/icons/Brightness2';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
 import { CONNECT_WALLET, CONFIGURE_RETURNED } from '../../stores/constants';
-
 import Unlock from '../unlock';
-
 import stores from '../../stores';
 import { formatAddress } from '../../utils';
-
 import classes from './header.module.css';
 
 const StyledSwitch = withStyles((theme) => ({
@@ -121,13 +110,15 @@ function Header(props) {
 
   return (
     <div className={classes.headerContainer}>
-      {props.backClicked && (
-        <div className={classes.backButton}>
+      <div className={classes.logo}>
+        <img className={classes.orb} src="/minmaxlogo.png" alt="MinMax Finance Logo" />
+        <h2>MinMax Finance DAO</h2>
+      </div>
+      <div className={classes.backButton} style={{visibility: props.backClicked ? 'visible' : 'hidden' }}>
           <Button color={props.theme.palette.type === 'light' ? 'primary' : 'secondary'} onClick={props.backClicked} disableElevation>
             <ArrowBackIcon />
           </Button>
-        </div>
-      )}{' '}
+      </div>
       {/* <div className={classes.themeSelectContainer}>
         <StyledSwitch
           icon={<Brightness2Icon className={classes.switchIcon} />}

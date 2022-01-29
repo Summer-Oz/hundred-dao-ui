@@ -18,7 +18,7 @@ function toFixedIfNecessary( value, dp ){
 }
 function LockDurationChart ({ project }) {
 
-  const accentColor = "#26ff91";
+  const accentColor = "#187FCE";
   const ChartContainer = styled.div`
     margin-top: 18px;
     text {

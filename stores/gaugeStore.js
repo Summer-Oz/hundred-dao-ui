@@ -52,12 +52,12 @@ class Store {
           type: 'minmaxfinance',
           id: 'minmax-finance-iotex',
           name: 'Iotex',
-          logo: '/arbitrum.png',
+          logo: '/iotex_logo.png',
           url: '',
           chainId: 4689,
-          gaugeProxyAddress: "0xb39dF3318D42b36D1E1D65DD091A6490745a13aD",
+          gaugeProxyAddress: "0x36f0B6917220d8814700D119798EEC3c0DbF2a91",
           lpPriceOracle: "",
-          rewardPolicyMaker: "0xf7414fe50b7CC4dB96592a1460EE3BA258343B8A",
+          rewardPolicyMaker: "0x04D835463C8fD5527D566Dd6353CE65199995087",
           gauges: [],
           vaults: [],
           tokenMetadata: {},
@@ -67,7 +67,6 @@ class Store {
           maxDurationYears: 4,
           onload: null
         },
-        
       ],
     };
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Header from "../header";
 import SnackbarController from "../snackbar";
 
-export const siteTitle = "HundredFinanceDao";
+export const siteTitle = "MinMaxFinanceDao";
 
 export default function Layout({
   children,
@@ -15,7 +15,7 @@ export default function Layout({
   return (
     <div className={classes.container}>
       <Head>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
           href="/fonts/Inter/Inter-Regular.ttf"
@@ -30,8 +30,8 @@ export default function Layout({
         />
         {/* <meta name="description" content="Yearn.finance" />
         <meta name="og:title" content="Yearn" /> */}
-        <meta name="description" content="hundred.finance" />
-        <meta name="og:title" content="HundredFinance" />
+        <meta name="description" content="minmax.finance" />
+        <meta name="og:title" content="MinMaxFinance" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className={classes.content}>
