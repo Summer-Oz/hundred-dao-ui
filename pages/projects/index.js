@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from 'react';
-
 import { Typography, Paper, Button, CircularProgress } from '@material-ui/core';
-import Skeleton from '@material-ui/lab/Skeleton';
 import { withTheme } from '@material-ui/core/styles';
-
 import Layout from '../../components/layout/layout.js';
 import ProjectCard from '../../components/projectCard';
 import Header  from '../../components/header';
-
 import classes from './projects.module.css';
-
 import stores from '../../stores/index.js';
-import { ERROR, GET_PROJECTS, PROJECTS_RETURNED, GAUGES_CONFIGURED } from '../../stores/constants';
-
-import { formatCurrency, formatAddress } from '../../utils';
+import { GET_PROJECTS, PROJECTS_RETURNED, GAUGES_CONFIGURED } from '../../stores/constants';
 
 function Projects({ changeTheme, theme }) {
-
   const [loading, setLoading] = useState(false);
   const [projects, setProjects] = useState(null);
 

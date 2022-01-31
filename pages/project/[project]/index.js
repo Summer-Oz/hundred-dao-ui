@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-
 import { Typography, Paper, Button } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
-
 import Layout from '../../../components/layout/layout.js';
 import Balances from '../../../components/balances';
 import LockDurationChart from '../../../components/lockDuration';
-
 import GaugeCalculator from '../../../components/gaugeCalculator';
 import VeAssetGeneration from '../../../components/veAssetGeneration';
 import VeAssetModificationAmount from '../../../components/veAssetModificationAmount';
@@ -16,9 +13,7 @@ import GaugeVoting from '../../../components/gaugeVoting';
 import BoostCalculator from '../../../components/boostCalculator';
 import Header from '../../../components/header';
 import Footer from '../../../components/footer';
-
 import classes from './project.module.css';
-
 import stores from '../../../stores/index.js';
 import {
   ERROR,
@@ -37,14 +32,22 @@ import BigNumber from 'bignumber.js';
 
 function Projects({ changeTheme }) {
   const router = useRouter();
-
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
-
   const [loading, setLoading] = useState(false);
   const [project, setProject] = useState(null);
   const [account, setAccount] = useState(null);
+  const [chainId, setChainId] = useState(null);
 
+  useEffect(async () => {
+    async function getCurrentChainId() {
+      const web3 = await stores.accountStore.getWeb3Provider();
+      let chainId = await web3?.eth?.getChainId();
+      setChainId(chainId);
+    }
+    await getCurrentChainId();
+  }, [])
+  
   useEffect(function () {
     const projectReturned = (proj) => {
       setProject(proj);
@@ -106,6 +109,7 @@ function Projects({ changeTheme }) {
   return (
     <Layout changeTheme={changeTheme} backClicked={backClicked}>
       <Header changeTheme={changeTheme} backClicked={backClicked} />
+      {chainId && chainId === 4689 ?
         <div className={classes.projectContainer}>
           <Balances project={project} />
           <div className={classes.projectCardContainer2EqualColumns}>
@@ -143,8 +147,8 @@ function Projects({ changeTheme }) {
           }
 
           <div className={classes.projectCardContainer2EqualColumns}>
-            <GaugeVoting project={project}/>
-            <BoostCalculator project={project}/>
+            <GaugeVoting project={project} />
+            <BoostCalculator project={project} />
           </div>
 
           <div className={classes.fakeGrid}>
@@ -152,11 +156,14 @@ function Projects({ changeTheme }) {
               <GaugeVotesTable project={project} />
             </Paper>
           </div>
-
         </div>
-
+        :
+        <>
+          <p style={{ textAlign: "center" }}>Please switch to IoTeX chain</p>
+        </>
+      }
       <Footer />
-    </Layout>
+      </Layout>
   );
 }
 

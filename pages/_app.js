@@ -4,16 +4,11 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { useRouter } from 'next/router';
-
 import '../styles/global.css'
-
 import lightTheme from '../theme/light';
 import darkTheme from '../theme/dark';
-
 import Configure from './configure';
-
 import stores from '../stores/index.js';
-
 import { CONFIGURE, CONFIGURE_RETURNED } from '../stores/constants';
 
 export default function MyApp({ Component, pageProps }) {
