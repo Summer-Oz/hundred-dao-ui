@@ -28,11 +28,17 @@ export default function Layout({
           as="font"
           crossOrigin=""
         />
-        {/* <meta name="description" content="Yearn.finance" />
-        <meta name="og:title" content="Yearn" /> */}
-        <meta name="description" content="minmax.finance" />
-        <meta name="og:title" content="MinMaxFinance" />
+        <meta name="description" content="MinMax Finance DAO" />
+        <meta name="og:title" content="MinMax Finance DAO" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description"
+          content="MinMax Finance DAO" />
+        <meta property="og:image" content="https://vote.minmax.finance/minmaxlogo.png" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@minmaxfinance" />
+        <meta name="twitter:title" content="MinMax Finance DAO" />
+        <meta name="twitter:description" content="MinMax Finance DAO" />
+        <meta name="twitter:image" content="https://vote.minmax.finance/minmaxlogo.png" />
       </Head>
       <div className={classes.content}>
         <SnackbarController />
