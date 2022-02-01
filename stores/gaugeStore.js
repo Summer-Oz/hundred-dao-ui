@@ -51,7 +51,7 @@ class Store {
         {
           type: 'minmaxfinance',
           id: 'minmax-finance-iotex',
-          name: 'Iotex',
+          name: 'IoTeX',
           logo: '/iotex_logo.png',
           url: '',
           chainId: 4689,
