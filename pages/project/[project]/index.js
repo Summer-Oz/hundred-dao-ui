@@ -140,7 +140,7 @@ function Projects({ changeTheme }) {
               <LockDurationChart project={project} />
             </div>
             :
-            <div className={classes.projectCardContainer2Columns}>
+            <div className={classes.projectCardContainer2EqualColumns}>
               <VeAssetGeneration project={project} />
               <LockDurationChart project={project} />
             </div>

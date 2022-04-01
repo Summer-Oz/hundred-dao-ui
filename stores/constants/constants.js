@@ -8,7 +8,7 @@ export const ETHERSCAN_URL = 'https://etherscan.io/';
 
 // DEFINE CONTRACT ADDRESSES
 
-
+export const outdatedPools = ["minmaxXIMM3", "minmaxXIMB3", "minmaxXIME3"];
 
 // GENERAL
 export const ERROR = 'ERROR';

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Paper, TextField, InputAdornment, Button, Tooltip, CircularProgress } from '@material-ui/core';
-import Skeleton from '@material-ui/lab/Skeleton';
+// import Skeleton from '@material-ui/lab/Skeleton';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import BigNumber from 'bignumber.js';
 import { formatCurrency } from '../../utils';
 
-import PieChart from './pieChart';
-import GaugeVotesTable from './gaugeVotesTable';
+// import PieChart from './pieChart';
+// import GaugeVotesTable from './gaugeVotesTable';
 
 import stores from '../../stores/index.js';
-import { ERROR, VOTE, VOTE_RETURNED } from '../../stores/constants';
+import { ERROR, outdatedPools, VOTE, VOTE_RETURNED } from '../../stores/constants';
 
 import classes from './gaugeVoting.module.css';
 import moment from 'moment';
@@ -19,7 +19,6 @@ export default function GaugeVoting({ project }) {
   const [amountError, setAmountError] = useState(false);
   const [gauge, setGauge] = useState(null);
   const [gaugeError, setGaugeError] = useState(false);
-
   const [voteLoading, setVoteLoading] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
 
@@ -98,7 +97,9 @@ export default function GaugeVoting({ project }) {
           </div>
           <Autocomplete
             disableClearable={true}
-            options={project?.gauges}
+            options={project?.gauges?.filter((gauge) => {
+              return outdatedPools.indexOf(gauge.lpToken.symbol) === -1
+            })}
             value={gauge}
             onChange={onGaugeSelectChanged}
             getOptionLabel={(option) => option.lpToken.symbol}

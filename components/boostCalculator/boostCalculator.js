@@ -10,6 +10,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import classes from './boostCalculator.module.css';
 import moment from 'moment';
 import { formatCurrency } from '../../utils';
+import { outdatedPools } from '../../stores/constants/constants';
 
 export default function BoostCalculator({ project }) {
   const [stakeAmount, setStakeAmount] = useState(0);
@@ -97,7 +98,9 @@ export default function BoostCalculator({ project }) {
           </div>
           <Autocomplete
             disableClearable={true}
-            options={project?.gauges}
+            options={project?.gauges?.filter((gauge) => {
+              return outdatedPools.indexOf(gauge.lpToken.symbol) === -1
+            })}
             value={gauge}
             onChange={onGaugeSelectChanged}
             getOptionLabel={(option) => option.lpToken.symbol}

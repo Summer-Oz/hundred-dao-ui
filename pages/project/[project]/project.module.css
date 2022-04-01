@@ -1,6 +1,6 @@
 .projectContainer {
   width: 100%;
-  padding: 0 36px;
+  padding: 0px;
   display: grid;
   grid-template-columns: 100%;
   grid-gap: 24px;
@@ -26,7 +26,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-gap: 48px;
+  grid-gap: 24px;
   box-sizing: border-box;
 }
 
@@ -93,6 +93,9 @@
     grid-gap: 12px;
   }
   .projectCardContainer2EqualColumns {
+    grid-template-columns: 1fr;
+  }
+  .projectCardContainer2Columns {
     grid-template-columns: 1fr;
   }
 }
